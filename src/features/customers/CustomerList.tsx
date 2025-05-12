@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useNavigate } from "react-router-dom";
 interface Customer {
   _id: string;
   name: string;
@@ -12,11 +12,11 @@ interface Customer {
 }
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const VITE_AUTH0_CALLBACK_URL=import.meta.env.VITE_AUTH0_CALLBACK_URL
+
 const CustomerList = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const { getAccessTokenSilently } = useAuth0();
-
+const navigate=useNavigate()
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -40,9 +40,8 @@ const CustomerList = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Customer List</h2>
         <button
-          onClick={() => (window.location.href = `${VITE_AUTH0_CALLBACK_URL}/customers/new`)}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
+  onClick={() => navigate("/customers/new")}
+   className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
           + Add Customer
         </button>
       </div>
