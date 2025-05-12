@@ -1,9 +1,10 @@
-import  { useState } from "react";
+import { useState } from "react";
 
 const NewCampaign = () => {
   const [message, setMessage] = useState("");
   const [segmentId, setSegmentId] = useState("");
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const handleCreateCampaign = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/campaign`, {
@@ -12,8 +13,12 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
         body: JSON.stringify({ segmentId, message }),
       });
 
-      const data = await response.json();
-      alert("Campaign created successfully!");
+      // You don't need the 'data' variable if it's not being used
+      if (response.ok) {
+        alert("Campaign created successfully!");
+      } else {
+        alert("Failed to create campaign");
+      }
     } catch (error) {
       console.error("Error creating campaign:", error);
     }

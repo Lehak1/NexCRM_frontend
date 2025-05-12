@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-     { name: "Customers", href: "/customers", icon: LayoutDashboard },
+    { name: "Customers", href: "/customers", icon: LayoutDashboard },
     { name: "Campaigns", href: "/campaign/history", icon: Send },
     { name: "Segments", href: "/segments/new", icon: Users },
     { name: "Orders", href: "/orders", icon: Database },
@@ -34,7 +34,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 text-blue-600 font-bold text-xl">
           <Database className="h-6 w-6" />
-           NexCRM
+          NexCRM
         </Link>
 
         {/* Desktop Navigation (only if authenticated) */}
@@ -60,6 +60,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <>
               <Link to="/profile" className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                {/* Check if user is defined before accessing its properties */}
                 {user?.picture ? (
                   <img src={user.picture} alt="user" className="h-8 w-8 rounded-full" />
                 ) : (
@@ -67,7 +68,7 @@ const Navbar = () => {
                     {user?.name?.charAt(0) || "U"}
                   </div>
                 )}
-                <span className="hidden md:inline">{user.name}</span>
+                <span className="hidden md:inline">{user?.name}</span>
               </Link>
               <button
                 onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}

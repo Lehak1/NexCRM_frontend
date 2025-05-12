@@ -6,7 +6,6 @@ import {
   Send,
   BarChart3,
   Calendar,
- 
   ArrowUpRight,
   ArrowDownRight,
   ChevronDown
@@ -15,9 +14,10 @@ import { motion } from 'framer-motion';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement);
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const Dashboard: React.FC = () => {
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+const Dashboard: React.FC = () => {
   const [stats, setStats] = useState([
     {
       id: 1,
@@ -52,8 +52,6 @@ const Dashboard: React.FC = () => {
       trend: 'down',
     }
   ]);
-
-  const [recentCampaigns, setRecentCampaigns] = useState<any[]>([]);
 
   const [campaignObjective, setCampaignObjective] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
@@ -93,25 +91,6 @@ const Dashboard: React.FC = () => {
         change: -1.3,
         trend: 'down',
       }
-    ]);
-
-    setRecentCampaigns([
-      {
-        id: 'a1',
-        name: 'Re-Engagement Campaign',
-        date: 'May 8, 2025',
-        audienceSize: 400,
-        delivered: 368,
-        status: 'completed'
-      },
-      {
-        id: 'a2',
-        name: 'Product Launch Teaser',
-        date: 'May 4, 2025',
-        audienceSize: 600,
-        delivered: 480,
-        status: 'in progress'
-      },
     ]);
   }, []);
 
