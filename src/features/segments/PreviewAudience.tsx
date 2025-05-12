@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const PreviewAudience = () => {
   const [audienceSize, setAudienceSize] = useState<number | null>(null);
 
@@ -11,7 +11,7 @@ const PreviewAudience = () => {
       ];
       const combinator = "OR";
 
-      const response = await fetch("http://localhost:3000/segments/preview", {
+      const response = await fetch(`${API_BASE_URL}/segments/preview`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

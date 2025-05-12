@@ -11,6 +11,8 @@ interface Customer {
   lastActiveDate: string;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const VITE_AUTH0_CALLBACK_URL=import.meta.env.VITE_AUTH0_CALLBACK_URL
 const CustomerList = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const { getAccessTokenSilently } = useAuth0();
@@ -19,7 +21,7 @@ const CustomerList = () => {
     const fetchCustomers = async () => {
       try {
         const token = await getAccessTokenSilently();
-        const response = await axios.get("http://localhost:3000/customers", {
+        const response = await axios.get(`${API_BASE_URL}/customers`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,7 +40,7 @@ const CustomerList = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Customer List</h2>
         <button
-          onClick={() => (window.location.href = "http://localhost:5173/customers/new")}
+          onClick={() => (window.location.href = `${VITE_AUTH0_CALLBACK_URL}/customers/new`)}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
         >
           + Add Customer

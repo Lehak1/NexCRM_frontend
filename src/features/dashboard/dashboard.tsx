@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import {
   Users,
   Target,
   Send,
   BarChart3,
   Calendar,
-  ChevronRight,
+ 
   ArrowUpRight,
   ArrowDownRight,
   ChevronDown
@@ -15,9 +15,8 @@ import { motion } from 'framer-motion';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement);
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const Dashboard: React.FC = () => {
-  const navigate = useNavigate();
 
   const [stats, setStats] = useState([
     {
@@ -121,7 +120,7 @@ const Dashboard: React.FC = () => {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/generateai', {
+      const res = await fetch(`${API_BASE_URL}/generateai`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

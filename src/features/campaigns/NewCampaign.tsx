@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 const NewCampaign = () => {
   const [message, setMessage] = useState("");
   const [segmentId, setSegmentId] = useState("");
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const handleCreateCampaign = async () => {
     try {
-      const response = await fetch("/api/campaign", {
+      const response = await fetch(`${API_BASE_URL}/api/campaign`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ segmentId, message }),

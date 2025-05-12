@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const AddCustomer = () => {
   const { getAccessTokenSilently } = useAuth0();
 
@@ -29,7 +30,7 @@ const AddCustomer = () => {
       const token = await getAccessTokenSilently();
       console.log("Access Token =>", token);
 
-      await axios.post("http://localhost:3000/customers", formData, {
+      await axios.post(`${API_BASE_URL}/customers`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

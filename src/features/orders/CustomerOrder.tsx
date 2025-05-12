@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const CustomerOrders: React.FC = () => {
   const { getAccessTokenSilently } = useAuth0();
 
@@ -19,7 +19,7 @@ const CustomerOrders: React.FC = () => {
         const token = await getAccessTokenSilently();
 
         const response = await axios.get(
-          `http://localhost:3000/orders/customer/${customerId}`,
+          `${API_BASE_URL}/orders/customer/${customerId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

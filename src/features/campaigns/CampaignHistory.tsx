@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const CampaignHistory = () => {
   const { getAccessTokenSilently } = useAuth0();
   const [campaigns, setCampaigns] = useState<any[]>([]);
@@ -18,7 +19,7 @@ const CampaignHistory = () => {
     const fetchCampaigns = async () => {
       try {
         const token = await getAccessTokenSilently();
-        const response = await axios.get("http://localhost:3000/campaigns/campaign/history", {
+        const response = await axios.get(`${API_BASE_URL}/campaigns/campaign/history`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

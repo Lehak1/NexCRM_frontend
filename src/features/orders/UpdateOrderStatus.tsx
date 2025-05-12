@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const UpdateOrderStatus = ({ orderId }: { orderId: string }) => {
   const [status, setStatus] = useState('PENDING');
   const [message, setMessage] = useState('');
@@ -9,7 +9,7 @@ const UpdateOrderStatus = ({ orderId }: { orderId: string }) => {
     e.preventDefault();
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/orders/${orderId}/status`,
+        `${API_BASE_URL}/orders/${orderId}/status`,
         { status },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
