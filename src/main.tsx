@@ -5,6 +5,7 @@ import App from './App.tsx'
 import {BrowserRouter as Router} from "react-router-dom";
 import Auth0providerwithNavigate from './auth/Auth0ProviderWithNavigate.tsx'
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
