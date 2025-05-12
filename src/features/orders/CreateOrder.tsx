@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const CreateOrder: React.FC = () => {
   const { getAccessTokenSilently } = useAuth0();
 
@@ -33,7 +33,7 @@ const CreateOrder: React.FC = () => {
       const token = await getAccessTokenSilently();
 
       const response = await axios.post(
-        'http://localhost:3000/orders',
+        `${API_BASE_URL}/orders`,
         {
           ...formData,
           items: [

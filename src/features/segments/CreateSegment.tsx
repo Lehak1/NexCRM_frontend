@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import DynamicRuleBuilder from "./DynamicRuleBuilder"; 
 import type { Condition } from "./type";
 import { useNavigate } from "react-router-dom";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const CreateSegment = () => {
   const { getAccessTokenSilently } = useAuth0();
 
@@ -18,7 +19,7 @@ const navigate = useNavigate();
     try {
       const token = await getAccessTokenSilently();
       await axios.post(
-        "http://localhost:3000/segments",
+        `${API_BASE_URL}/segments`,
         { name, rules, combinator },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -37,7 +38,7 @@ const navigate = useNavigate();
     try {
       const token = await getAccessTokenSilently();
       const res = await axios.post(
-        "http://localhost:3000/segments/preview",
+        `${API_BASE_URL}/segments/preview`,
         { rules, combinator },
         { headers: { Authorization: `Bearer ${token}` } }
       );
